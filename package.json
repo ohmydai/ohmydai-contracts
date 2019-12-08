@@ -1,0 +1,30 @@
+{
+  "name": "contracts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "buidler test",
+    "ethlint": "ethlint -d contracts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomiclabs/buidler": "^1.0.1",
+    "@nomiclabs/buidler-ganache": "^1.0.1",
+    "@nomiclabs/buidler-truffle5": "^1.0.1",
+    "@nomiclabs/buidler-web3": "^1.0.1",
+    "@openzeppelin/cli": "^2.5.3",
+    "@openzeppelin/upgrades": "^2.5.3",
+    "@truffle/hdwallet-provider": "^1.0.25",
+    "chai": "^4.2.0",
+    "commander": "^4.0.1",
+    "dotenv": "^8.2.0",
+    "ethlint": "^1.2.5",
+    "truffle": "^5.0.44",
+    "web3": "^1.2.4"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts-ethereum-package": "^2.4.0"
+  }
+}
