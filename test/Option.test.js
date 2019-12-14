@@ -267,23 +267,17 @@ contract("Option", function(accounts) {
       });
     });
 
-    describe("disable any kind of trading", function() {
-      it("should not allow transfer()", async function() {
+    describe("must allow transfers because of how uniswap liquidity pools work", function() {
+      it("should allow transfer()", async function() {
         await mintOptions();
         await forceExpiration();
 
-        let failed = false;
-        try {
-          await option.methods
-            .transfer(anotherUsdcHolder, "1000000000000000000")
-            .send({ from: usdcHolder });
-        } catch (err) {
-          failed = true;
-        }
-        failed.should.be.true;
+        await option.methods
+          .transfer(anotherUsdcHolder, "1000000000000000000")
+          .send({ from: usdcHolder });
       });
 
-      it("should not allow transferFrom()", async function() {
+      it("should allow transferFrom()", async function() {
         await mintOptions();
         await forceExpiration();
 
@@ -291,15 +285,9 @@ contract("Option", function(accounts) {
           .approve(daiHolder, "1000000000000000000")
           .send({ from: usdcHolder });
 
-        let failed = false;
-        try {
-          await option.methods
-            .transferFrom(usdcHolder, anotherUsdcHolder, "1000000000000000000")
-            .send({ from: daiHolder });
-        } catch (err) {
-          failed = true;
-        }
-        failed.should.be.true;
+        await option.methods
+          .transferFrom(usdcHolder, anotherUsdcHolder, "1000000000000000000")
+          .send({ from: daiHolder });
       });
     });
 

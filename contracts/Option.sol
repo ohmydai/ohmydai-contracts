@@ -279,17 +279,6 @@ contract Option is Initializable, ERC20Detailed, ERC20 {
         return strikeAsset.balanceOf(address(this));
     }
 
-    /**
-     * Overrides the OZ ERC20._transfer() function to intercept and block
-     * transfers after expiration time.
-     */
-    function _transfer(address sender, address recipient, uint256 amount) internal {
-        if (_hasExpired()) {
-            revert("Contract has expired");
-        }
-        super._transfer(sender, recipient, amount);
-    }
-
     function _hasExpired() internal view returns (bool) {
         return block.number >= expirationBlockNumber;
     }
