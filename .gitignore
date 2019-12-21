@@ -99,8 +99,6 @@ public/
 
 build/
 .openzeppelin/.session
-.openzeppelin/kovan.json
-.openzeppelin/rinkeby.json
 .openzeppelin/dev-*.json
 artifacts/
 cache/

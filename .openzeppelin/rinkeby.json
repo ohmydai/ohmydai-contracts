@@ -1,7 +1,7 @@
 {
   "contracts": {
     "Option": {
-      "address": "0x89D08b056BadAe4547CE6cD9A4609148ed931CdF",
+      "address": "0x94AbA9dDBF3392f259d51F3312D7DA2B31CFaD11",
       "constructorCode": "60806040526136b3806100136000396000f3fe",
       "bodyBytecodeHash": "db732729cb75f93d1961e5bcabb9a618375bd293049b92295a266a9d03c838d0",
       "localBytecodeHash": "a372ff0ae5bed5f85cd660e1aa3a228593c034cfc3573a1395940bd09332fbc7",
@@ -205,49 +205,27 @@
         "hasSelfDestruct": false,
         "hasDelegateCall": false,
         "hasInitialValuesInDeclarations": false,
-        "uninitializedBaseContracts": [],
-        "storageUncheckedVars": [],
-        "storageDiff": []
+        "uninitializedBaseContracts": []
       }
     }
   },
   "solidityLibs": {},
-  "proxies": {
-    "contracts/Option": [
-      {
-        "address": "0x66117f59814DC7f2AaA7A2f90F6ef16F7e2b363D",
-        "version": "1.0.0",
-        "implementation": "0x89D08b056BadAe4547CE6cD9A4609148ed931CdF",
-        "admin": "0xAD19dbB2ce40FEBC280dD1E999349fb32b96Fda7",
-        "kind": "Upgradeable"
-      },
-      {
-        "address": "0x64a03cE1E52B4e579f0A1cf44cF95C0D7898B5A3",
-        "version": "1.0.0",
-        "implementation": "0x89D08b056BadAe4547CE6cD9A4609148ed931CdF",
-        "admin": "0xAD19dbB2ce40FEBC280dD1E999349fb32b96Fda7",
-        "kind": "Upgradeable"
-      }
-    ]
-  },
+  "proxies": {},
   "manifestVersion": "2.2",
   "version": "0.3.0",
   "dependencies": {
     "@openzeppelin/contracts-ethereum-package": {
-      "package": "0x778dddF23Ec1B5Cb18394c6C110480CaaDB3B0f6",
+      "package": "0xa44bb80b290dE8a465d17B14269dF53CF0B9Bf4f",
       "version": "2.4.0"
     }
   },
-  "proxyAdmin": {
-    "address": "0xAD19dbB2ce40FEBC280dD1E999349fb32b96Fda7"
-  },
   "app": {
-    "address": "0x029795866eC564fE0c022FC4AE5dB0C248f8BeE5"
+    "address": "0xFe19ca8D906Cb75E3dCDe427621791124FAc18dE"
   },
   "package": {
-    "address": "0x4695D4c9fd177179B185E3Ba75d9D1426d5561C0"
+    "address": "0x6Fc19f348322b1eDBbf903B10F3CaD67C50048BD"
   },
   "provider": {
-    "address": "0x2F379dC407934E0f11e9F80C068d91E083D888e1"
+    "address": "0xfDB383c69A8d08f8c3Ae53E5E38f746eCB4d60bB"
   }
 }

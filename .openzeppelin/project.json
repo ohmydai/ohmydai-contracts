@@ -7,7 +7,7 @@
     "@openzeppelin/contracts-ethereum-package": "^2.3.0"
   },
   "name": "contracts",
-  "version": "1.0.0",
+  "version": "0.3.0",
   "telemetryOptIn": true,
   "compiler": {
     "manager": "openzeppelin",

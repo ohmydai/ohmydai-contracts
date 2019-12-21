@@ -1,14 +1,14 @@
 {
-  "name": "contracts",
-  "version": "1.0.0",
+  "name": "@ohmydai/contracts",
+  "version": "0.3.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "buidler test",
     "ethlint": "ethlint -d contracts"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "ohmydai developer team",
+  "license": "MIT",
   "devDependencies": {
     "@nomiclabs/buidler": "^1.0.1",
     "@nomiclabs/buidler-ganache": "^1.0.1",
@@ -26,5 +26,14 @@
   },
   "dependencies": {
     "@openzeppelin/contracts-ethereum-package": "^2.4.0"
-  }
+  },
+  "files": [
+    "build",
+    "contracts",
+    "test",
+    ".openzeppelin/project.json",
+    ".openzeppelin/mainnet.json",
+    ".openzeppelin/rinkeby.json",
+    ".openzeppelin/kovan.json"
+  ]
 }
