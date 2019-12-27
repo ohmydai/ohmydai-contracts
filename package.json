@@ -1,7 +1,14 @@
 {
   "name": "@ohmydai/contracts",
   "version": "0.3.3",
-  "description": "",
+  "description": "Ethereum on-chain options implementation",
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "token",
+    "erc20",
+    "defi"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "buidler test",
