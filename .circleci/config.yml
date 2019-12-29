@@ -1,11 +1,13 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+executors:
+  node:
     docker:
       - image: circleci/node:10.17.0
-
     working_directory: ~/repo
 
+jobs:
+  build:
+    executor: node
     steps:
       - checkout
 
@@ -23,4 +25,35 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - repo
+            - .ssh
+
+  test:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: ~/
       - run: npm test
+
+  publish:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: npx semantic-release
+
+workflows:
+  version: 2
+  all:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - publish:
+          context: ohmydai
+          requires:
+            - test

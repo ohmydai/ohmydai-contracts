@@ -2,7 +2,7 @@
 
 On-chain options implementation.
 
-Available as an OpenZeppelin ethereum package on mainnet, rinkeby and kovan.
+It is available as an OpenZeppelin ethereum package on mainnet, and ropsten, rinkeby and kovan testnets.
 
 - Website: [ohmydai.io](https://ohmydai.io/)
 - Twitter: [@ohmydai_io](https://twitter.com/ohmydai_io)
