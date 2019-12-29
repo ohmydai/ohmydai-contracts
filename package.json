@@ -41,6 +41,7 @@
     "test",
     ".openzeppelin/project.json",
     ".openzeppelin/mainnet.json",
+    ".openzeppelin/ropsten.json",
     ".openzeppelin/rinkeby.json",
     ".openzeppelin/kovan.json"
   ]

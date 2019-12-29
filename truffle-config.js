@@ -29,6 +29,15 @@ module.exports = {
       network_id: "1",
       gasPrice: 2000000000
     },
+    ropsten: {
+      provider: () =>
+        new HDWalletProvider(
+          process.env.DEV_MNEMONIC,
+          "https://ropsten.infura.io/v3/" + process.env.INFURA_PROJECT_ID,
+          process.env.ADDRESS_INDEX
+        ),
+      network_id: 3
+    },
     kovan: {
       provider: () =>
         new HDWalletProvider(
