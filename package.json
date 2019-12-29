@@ -1,6 +1,6 @@
 {
   "name": "@ohmydai/contracts",
-  "version": "0.3.3",
+  "version": "0.0.0-development",
   "description": "Ethereum on-chain options implementation",
   "keywords": [
     "solidity",
