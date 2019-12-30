@@ -1,12 +1,15 @@
 import { web3 } from "@nomiclabs/buidler";
-
 import { TestHelper } from "@openzeppelin/cli";
 import {
   AppProject,
   ProxyAdminProject,
-  Contract
+  Contract,
+  Contracts,
+  ZWeb3
 } from "@openzeppelin/upgrades";
-import { Contracts, ZWeb3 } from "@openzeppelin/upgrades";
+
+import { should } from "chai";
+should();
 
 ZWeb3.initialize(web3.currentProvider);
 
@@ -16,29 +19,19 @@ const StandaloneERC20 = Contracts.getFromNodeModules(
   "StandaloneERC20"
 );
 
-require("chai").should();
-
 describe("Option", function() {
-  let accounts: string[];
+  let proj: AppProject | ProxyAdminProject;
+  let usdcHolder: string;
+  let daiHolder: string;
+  let anotherUsdcHolder: string;
 
   let mockUSDC: Contract;
   let mockDAI: Contract;
   let option: Contract;
 
-  let usdcHolder: string;
-  let anotherUsdcHolder: string;
-  let daiHolder: string;
-
-  let proj: AppProject | ProxyAdminProject;
-
   beforeEach(async function() {
-    accounts = await web3.eth.getAccounts();
-
     proj = await TestHelper();
-
-    usdcHolder = accounts[0];
-    daiHolder = accounts[1];
-    anotherUsdcHolder = accounts[2];
+    [usdcHolder, daiHolder, anotherUsdcHolder] = await web3.eth.getAccounts();
 
     mockUSDC = await proj.createProxy(
       StandaloneERC20,
@@ -93,15 +86,11 @@ describe("Option", function() {
     usdc: string,
     dai?: string
   ) {
-    if (options !== null) {
-      const optionsBalance = await option.methods.balanceOf(account).call();
-      optionsBalance.should.be.equal(options);
-    }
+    const optionsBalance = await option.methods.balanceOf(account).call();
+    optionsBalance.should.be.equal(options);
 
-    if (usdc !== null) {
-      const usdcBalance = await mockUSDC.methods.balanceOf(account).call();
-      usdcBalance.should.be.equal(usdc);
-    }
+    const usdcBalance = await mockUSDC.methods.balanceOf(account).call();
+    usdcBalance.should.be.equal(usdc);
 
     if (dai !== undefined) {
       const daiBalance = await mockDAI.methods.balanceOf(account).call();
