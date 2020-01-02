@@ -31,6 +31,13 @@ jobs:
             - repo
             - .ssh
 
+  ethlint:
+    executor: node
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: npm run ethlint
+
   test:
     executor: node
     steps:
@@ -50,10 +57,14 @@ workflows:
   all:
     jobs:
       - build
+      - ethlint:
+          requires:
+            - build
       - test:
           requires:
             - build
       - publish:
           context: ohmydai
           requires:
+            - ethlint
             - test
