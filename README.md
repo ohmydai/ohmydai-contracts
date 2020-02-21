@@ -1,5 +1,7 @@
 # oh-my-da¡!
 
+[![built-with openzeppelin](https://img.shields.io/badge/built%20with-OpenZeppelin-3677FF)](https://docs.openzeppelin.com/)
+
 On-chain options implementation.
 
 It is available as an OpenZeppelin ethereum package on mainnet, and ropsten, rinkeby and kovan testnets.
