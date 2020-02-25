@@ -1,5 +1,15 @@
-const { TestHelper } = require("@openzeppelin/cli");
-const { Contracts, ZWeb3 } = require("@openzeppelin/upgrades");
+import { web3 } from "@nomiclabs/buidler";
+import { TestHelper } from "@openzeppelin/cli";
+import {
+  AppProject,
+  ProxyAdminProject,
+  Contract,
+  Contracts,
+  ZWeb3
+} from "@openzeppelin/upgrades";
+
+import { should } from "chai";
+should();
 
 ZWeb3.initialize(web3.currentProvider);
 
@@ -9,78 +19,99 @@ const StandaloneERC20 = Contracts.getFromNodeModules(
   "StandaloneERC20"
 );
 
-require("chai").should();
+describe("Option", function() {
+  let proj: AppProject | ProxyAdminProject;
+  let usdcHolder: string;
+  let daiHolder: string;
+  let anotherUsdcHolder: string;
 
-contract("Option", function(accounts) {
-  let mockUSDC;
-  let mockDAI;
-  let option;
-
-  let usdcHolder;
-  let anotherUsdcHolder;
-  let daiHolder;
+  let mockUSDC: Contract;
+  let mockDAI: Contract;
+  let option: Contract;
 
   beforeEach(async function() {
-    this.project = await TestHelper();
+    proj = await TestHelper();
+    [usdcHolder, daiHolder, anotherUsdcHolder] = await web3.eth.getAccounts();
 
-    usdcHolder = accounts[0];
-    daiHolder = accounts[1];
-    anotherUsdcHolder = accounts[2];
+    mockUSDC = await proj.createProxy(
+      StandaloneERC20,
+      // @ts-ignore
+      {
+        initMethod: "initialize",
+        initArgs: [
+          "Fake USDC",
+          "USDC",
+          "6",
+          (100e6).toString(),
+          usdcHolder,
+          [],
+          []
+        ]
+      }
+    );
 
-    mockUSDC = await this.project.createProxy(StandaloneERC20, {
-      initMethod: "initialize",
-      initArgs: ["Fake USDC", "USDC", 6, (100e6).toString(), usdcHolder, [], []]
-    });
+    mockDAI = await proj.createProxy(
+      StandaloneERC20,
+      // @ts-ignore
+      {
+        initMethod: "initialize",
+        initArgs: [
+          "Fake DAI",
+          "DAI",
+          "18",
+          (100e18).toString(),
+          daiHolder,
+          [],
+          []
+        ]
+      }
+    );
 
-    mockDAI = await this.project.createProxy(StandaloneERC20, {
-      initMethod: "initialize",
-      initArgs: ["Fake DAI", "DAI", 18, (100e18).toString(), daiHolder, [], []]
-    });
-
-    option = await this.project.createProxy(Option, {
+    option = await proj.createProxy(Option, {
       initMethod: "initializeInTestMode",
       initArgs: [
         "oh DAI:USDC",
         "OH:DAI:USDC",
         mockDAI.address,
-        18,
+        "18",
         mockUSDC.address,
         "1000001"
       ]
     });
   });
 
-  async function checkBalances(account, options, usdc, dai) {
-    if (options !== null) {
-      const optionsBalance = await option.methods.balanceOf(account).call();
-      optionsBalance.should.be.equal(options);
-    }
+  async function checkBalances(
+    account: string,
+    options: string,
+    usdc: string,
+    dai?: string
+  ) {
+    const optionsBalance = await option.methods.balanceOf(account).call();
+    optionsBalance.should.be.equal(options);
 
-    if (usdc !== null) {
-      const usdcBalance = await mockUSDC.methods.balanceOf(account).call();
-      usdcBalance.should.be.equal(usdc);
-    }
+    const usdcBalance = await mockUSDC.methods.balanceOf(account).call();
+    usdcBalance.should.be.equal(usdc);
 
-    if (dai !== null) {
+    if (dai !== undefined) {
       const daiBalance = await mockDAI.methods.balanceOf(account).call();
       daiBalance.should.be.equal(dai);
     }
   }
 
   async function mintOptionsAndCheck(
-    account,
-    mintAmount,
-    expectedStrikeAllowance,
-    expectedOptions,
-    expectedUsdc
+    account: string,
+    mintAmount: string,
+    expectedStrikeAllowance: string,
+    expectedOptions: string[],
+    expectedUsdc: string[]
   ) {
     await mockUSDC.methods
       .approve(option.address, expectedStrikeAllowance)
       .send({ from: account });
 
-    await checkBalances(account, expectedOptions[0], expectedUsdc[0], null);
+    await checkBalances(account, expectedOptions[0], expectedUsdc[0]);
     await option.methods.mint(mintAmount).send({ from: account });
-    await checkBalances(account, expectedOptions[1], expectedUsdc[1], null);
+    await checkBalances(account, expectedOptions[1], expectedUsdc[1]);
   }
 
   async function mintOptions() {

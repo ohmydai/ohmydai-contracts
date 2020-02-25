@@ -1,6 +1,6 @@
 {
   "name": "@ohmydai/contracts",
-  "version": "0.3.3",
+  "version": "0.0.0-development",
   "description": "Ethereum on-chain options implementation",
   "keywords": [
     "solidity",
@@ -12,7 +12,7 @@
   "main": "index.js",
   "scripts": {
     "test": "buidler test",
-    "ethlint": "ethlint -d contracts"
+    "ethlint": "solium -d contracts"
   },
   "author": "ohmydai developer team",
   "license": "MIT",
@@ -24,12 +24,16 @@
     "@openzeppelin/cli": "^2.5.3",
     "@openzeppelin/upgrades": "^2.5.3",
     "@truffle/hdwallet-provider": "^1.0.25",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^10.17.13",
     "chai": "^4.2.0",
     "commander": "^4.0.1",
     "dotenv": "^8.2.0",
     "ethlint": "^1.2.5",
     "semantic-release-cli": "^5.2.3",
     "truffle": "^5.0.44",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4",
     "web3": "^1.2.4"
   },
   "dependencies": {
