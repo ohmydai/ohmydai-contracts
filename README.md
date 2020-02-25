@@ -1,6 +1,6 @@
 # oh-my-da¡!
 
-[![CircleCI](https://circleci.com/gh/ohmydai/ohmydai-contracts.svg?style=shield)](https://circleci.com/gh/ohmydai/ohmydai-contracts) [![npm (scoped)](https://img.shields.io/npm/v/@ohmydai/contracts)](https://www.npmjs.com/package/@ohmydai/contracts) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![Twitter Follow](https://img.shields.io/twitter/follow/ohmydai_io)](https://twitter.com/ohmydai_io?ref_src=twsrc%5Etfw)
+[![CircleCI](https://circleci.com/gh/ohmydai/ohmydai-contracts.svg?style=shield)](https://circleci.com/gh/ohmydai/ohmydai-contracts) [![npm (scoped)](https://img.shields.io/npm/v/@ohmydai/contracts)](https://www.npmjs.com/package/@ohmydai/contracts) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![built-with openzeppelin](https://img.shields.io/badge/built%20with-OpenZeppelin-3677FF)](https://docs.openzeppelin.com/) [![Twitter Follow](https://img.shields.io/twitter/follow/ohmydai_io)](https://twitter.com/ohmydai_io?ref_src=twsrc%5Etfw)
 
 ## About
 
